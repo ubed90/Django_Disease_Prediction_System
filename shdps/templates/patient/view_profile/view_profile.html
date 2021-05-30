@@ -1,0 +1,405 @@
+
+{% extends "basic.html" %}
+{% load static %}
+
+ 
+	{% block head %}
+
+
+  <link rel="stylesheet" href="{% static 'patient/view_profile/forms.css' %}">
+  <link rel="stylesheet" href="{% static 'patient/view_profile/responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'patient/view_profile/base.css' %}">
+
+
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+ <style>
+        .input-container {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .radio-btn{
+            width:20px;
+            height:16px;
+        }
+        .icon {
+            padding: 10px;
+            background: dodgerblue;
+            color: white;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            outline: none;
+        }
+        
+        .input-field:focus {
+            border: 2px solid dodgerblue;
+        }
+   
+
+        /* Set a style for the submit button */
+        .btn {
+            background-color: dodgerblue;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+        
+        .btn:hover {
+            opacity: 1;
+        }
+        .form-body {
+            background-color: #e7e7e9;
+            
+            box-shadow: 2px 2px 15px 7px #13171b;
+            
+            
+        }
+        
+
+    
+    </style>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+   
+
+
+
+
+
+
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM" >
+        
+        <div id="content-main">
+
+<fieldset class="module aligned ">
+
+    <div class="container "  >
+        
+          <div class="mx-auto text-center"><h1 >          Patient Profile - {{ puser.patient.name }} </h1> 
+          </div>
+
+
+
+
+        <div class="row" style="margin-left: 15px;margin-right: 15px;">
+            <div class="col-sm-3"></div>
+            <form class="form-body col-sm-6" action='signup_patient' method="POST" style="margin-top:5%;margin-bottom: 10%; padding-bottom: 1%;">
+                <h2></b><center>View / Edit Patient Profile</center></b></h2><br>
+  
+   <div class="form-row field-username">
+
+
+       <div class="input-container">
+                       <i class="fa fa-user icon"></i>
+
+                  
+             <label class="required" for="id_username" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>     Username     </h6></label>
+                      
+                   <input type="text" name="username" value={{puser.username}} placeholder="Username" class="input-field" maxlength="50" required="" id="id_username">
+                      
+                  
+                  
+              </div>
+          
+          </div>
+
+{% comment %} 
+<div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">     Username     </h6>
+                                <input class="input-field" type="text" placeholder="Username" name="username" required>
+            </div> {% endcomment %}
+
+
+
+
+
+
+          
+
+<div class="form-row field-name">
+
+
+  <div class="input-container">
+      
+                      <i class="fa fa-user icon"></i>
+
+          <label class="required" for="id_name"  style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"> <h6>    Name   </h6></label>
+          
+              <input type="text" name="name" placeholder="Name" value={{puser.patient.name}} class="input-field" maxlength="50" required id="id_name">
+          
+      
+      
+  </div>
+
+</div>
+
+    
+
+
+<div class="form-row field-email">
+
+
+    <div class="input-container">
+        
+         <i class="fa fa-envelope icon"></i>
+            <label class="required" for="id_email" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"> <h6 >     Email   </h6></label>
+            
+                <input type="text" name="email" value={{puser.email}} class="input-field" maxlength="100" placeholder="Email" required id="id_email">
+            
+        
+        
+    </div>
+
+</div>
+
+
+
+<div class="form-row field-dob">
+
+
+  <div class="input-container">
+       <i class="fa fa-calendar icon"></i>
+      
+          <label class="required" for="id_dob" style="padding-top: 2%; margin-left: 1%;">                <h6>     Date Of Birth      </h6>
+</label>
+          
+              <input type="date" name="dob" value={{puser.patient.dob|date:'Y-m-d'}} placeholder="Date-of-birth" class="input-field" size="10" required id="id_dob">
+              
+</div>
+</div>
+
+
+<div class="form-row field-address">
+
+
+  <div class="input-container">
+                      <i class="fa fa-address-book icon"></i>
+
+      
+          <label class="required" for="id_address" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">                <h6 >     Address   </h6>
+</label>
+          
+              <input type="text" name="address" value={{puser.patient.address}} class="input-field" maxlength="100"  placeholder="Address" required id="id_address">
+          
+      
+      
+  </div>
+
+</div>
+
+
+
+
+<div class="form-row field-mobile_no">
+
+
+  <div class="input-container">
+      
+        <i class="fa fa-phone icon"></i>
+          <label class="required" for="id_mobile_no" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6 >Mobile  </h6></label>
+          
+              <input type="number" name="mobile_no" value={{puser.patient.mobile_no}} class="input-field" maxlength="15" required="" id="id_mobile_no">
+          
+      
+      
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="form-row field-gender">
+
+
+  <div class="input-container">
+      
+                  <i class="fa fa-genderless icon"></i>
+
+          <label class="required" for="id_gender" style="padding-top: 2%;margin-left: 1%;margin-right:1%">            <h6>Gender</h6>
+</label>
+          
+              <input type="text" name="gender" value={{puser.patient.gender}} class="vTextField" maxlength="10" required="" id="id_gender">
+          
+      
+      
+  </div>
+
+</div>
+
+   <br>
+            <center>
+            {% if request.user.patient %}
+            <div class="comtainer mt-3 mb-3 ml-4 mr-4">
+          
+                <div class="btn-group">
+                  <button type="button" class="btn btn-secondary pr-4 pl-4 mr-5 ml-5 " data-toggle="collapse" data-target="#save">Edit</button>
+                  <div id="save" class="collapse ml-5 mr-5">
+                    <button type="button"  id="save" class="btn btn-success pr-4 pl-4 mr-5 ml-5 ">Save</button>
+                    </div>
+                 
+                </div>
+                
+            </div>
+                  {% endif %}
+</center> 
+
+</div>
+
+
+
+
+
+
+</div>
+
+</fieldset>
+      
+ </div>
+    <!-- END Content -->
+
+</div>
+<!-- END Container -->
+
+
+
+<script>
+
+  $(document).ready( function(){
+    $('#save').click( function(event){
+
+    dob = document.getElementById('id_dob').value,
+    
+
+    $.ajax({
+        url :"{% url 'savepdata' puser.username %}",
+        type : "POST",
+        data : { 
+
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        "name" :document.getElementById('id_name').value,
+        "dob" :dob,
+        "gender" :document.getElementById('id_gender').value,
+        "address" :document.getElementById('id_address').value,
+        "mobile_no" :document.getElementById('id_mobile_no').value
+
+       },
+
+        success : function(){
+          alert("new data is saved.")
+        }
+
+    });
+
+
+  });
+});
+
+</script>
+
+
+
+
+
+
+
+<!-- start Footer -->
+
+  <footer id="footer">
+
+    <div class="footer-top footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3 id="foothead">SHDPS</h3>
+            <p>
+              Plot no. 2 & 3, Sec 16 <br>
+              Khanda Gaon, Nr Thana Naka,<br>
+              New Panvel - 410206<br><br>
+              <strong>Phone:</strong> 022-24124188<br>
+              <strong>Email:</strong> contact@shdps.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-5 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about.html">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="contact.html">Contact</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Make Appointment</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Services</a></li>
+            </ul>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+           <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+             <h6 style="color: #fff;">Locate Us</h6>
+		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+        var setting = {"height":200,"width":350,"zoom":17,"queryString":"AIKTC COLLEGE, Sector 16, Khanda Colony, Panvel, Navi Mumbai, Maharashtra, India","place_id":"ChIJefH7Njro5zsRbsXoUVCQsLs","satellite":false,"centerCoord":[19.00016795546809,73.10430254999999],"cid":"0xbbb0905051e8c56e","lang":"en","cityUrl":"/india/navi-mumbai-32471","cityAnchorText":"Map of Navi Mumbai, West Zone, India","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"377192"};
+        var d = document;
+        var s = d.createElement('script');
+        s.src = 'https://1map.com/js/script-for-user.js?embed_id=377192';
+        s.async = true;
+        s.onload = function (e) {
+          window.OneMap.initMap(setting)
+        };
+        var to = d.getElementsByTagName('script')[0];
+        to.parentNode.insertBefore(s, to);
+      })();</script><a href="https://1map.com/map-embed">1 Map</a></div>
+          </div>
+
+          <div class="col-sm-5"></div>
+          <div class="footer-copyright text-center py-3" style="color: #fff;">© 2021 Copyright:
+            <a href="https://www.shdps.com"> www.shdps.com</a>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </footer>
+  <!-- End Footer -->
+
+
+{% endblock %}

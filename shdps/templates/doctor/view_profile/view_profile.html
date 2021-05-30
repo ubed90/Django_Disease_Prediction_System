@@ -1,0 +1,680 @@
+
+{% extends "basic.html" %}
+{% load static %}
+
+ 
+	{% block head %}
+
+
+  <link rel="stylesheet" href="{% static 'forms.css' %}">
+  <link rel="stylesheet" href="{% static 'responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'base.css' %}">
+
+{% block title%} 
+Doctor
+{% endblock %}
+
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+
+
+
+
+
+
+    <style>
+        .input-container {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .radio-btn{
+            width:20px;
+            height:16px;
+        }
+        .icon {
+            padding: 10px;
+            background: dodgerblue;
+            color: white;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            outline: none;
+        }
+        
+        .input-field:focus {
+            border: 2px solid dodgerblue;
+        }
+   
+
+        /* Set a style for the submit button */
+        .btn {
+            background-color: dodgerblue;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+        
+        .btn:hover {
+            opacity: 1;
+        }
+        .form-body {
+            background-color: #e7e7e9;
+            
+            box-shadow: 2px 2px 15px 7px #13171b;
+            
+            
+        }
+        
+    </style>
+
+
+    <!-- Content -->
+    {% comment %} <div id="content" class="colM"> {% endcomment %}
+
+{% comment %}         
+  <div id="content-main">
+
+<fieldset class="module aligned " >
+
+<div class="border border-dark rounded-lg mx-auto mt-6 " style="width:60%">
+
+<div class="container mt-3 "  > {% endcomment %}
+
+
+
+        
+      <div id="content-main" style="padding-top:5%;">
+
+<fieldset class="module aligned " >
+
+
+<div class="container mt-2"  >
+
+<div class="mx-auto text-center"><h2 >          Doctor Profile - {{ duser.doctor.name }} </h2> 
+</div>
+
+
+
+
+<div class="row" style="margin-left: 10px; margin-right: 10px;">
+
+  <div class="col-sm-2"></div>
+
+  <div class="form-body col-sm-8"  style="margin-top:5%; margin-bottom: 10%; padding-bottom: 1%;">
+
+
+      <h3></b><center>View / Edit Doctor Profile</center></b></h3><br>
+
+
+
+
+
+  {% comment %} <div class="form-row field-username"> {% endcomment %}
+
+
+        <div class="input-container">
+            
+               <i class="fa fa-user icon"></i>
+                <label class="required" for="id_username" style="padding: 2%; margin-left: 1%; margin-right: 1%;" > <h6 >Username </h6> </label>
+                
+                    <input type="text" name="username" placeholder="Username" value={{duser.username}} class="input-field" maxlength="50" required="" id="id_username" name="username" required>
+                          
+        </div>
+    
+    {% comment %} </div> {% endcomment %}
+
+
+ {% comment %} <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">     Username     </h6>
+
+      <input class="input-field" type="text" placeholder="Username" name="username" required>
+  </div> {% endcomment %}
+
+
+
+
+    
+{% comment %} <div class="form-row field-name"> {% endcomment %}
+
+
+    <div class="input-container">
+        
+            <i class="fa fa-user icon"></i>
+        
+            <label class="required" for="id_name" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6 > Name </h6></label>
+            
+                <input type="text" name="name" value={{duser.doctor.name}} class="input-field" maxlength="50" required="" id="id_name" placeholder="Name" name="name">
+            
+        
+        
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+
+{% comment %} <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">    Name     </h6>
+
+      <input class="input-field" type="text" placeholder="Name" name="name" required>
+  </div> {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} <div class="form-row field-email"> {% endcomment %}
+
+
+        <div class="input-container">
+            
+             <i class="fa fa-envelope icon"></i>
+            
+                <label class="required" for="id_email" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>Email</h6></label>
+                
+                  <input type="text" name="email" value={{duser.email}} class="input-field" maxlength="100" required="" id="id_email"  placeholder="Email" name="email">
+               
+        </div>
+    
+    {% comment %} </div> {% endcomment %}
+{% comment %}     
+<div class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">     Email   </h6>
+
+      <input class="input-field" type="text" placeholder="Email" name="email" required>
+  </div> {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} <div class="form-row field-dob"> {% endcomment %}
+
+
+    <div class="input-container">
+        
+      <i class="fa fa-calendar icon"></i>
+        
+            <label class="required" for="id_dob" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6 >Date Of Birth</h6></label>
+            
+                <input type="date" name="dob" value={{duser.doctor.dob|date:'Y-m-d'}} placeholder="Date-of-birth" style="width: 50%;margin-left: 5%;" class="input-field" size="10" required="" id="id_dob">
+  </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+
+{% comment %} 
+<div class="input-container">
+      <i class="fa fa-calendar icon"></i>
+      <h6 style="padding-top: 2%; margin-left: 1%;">Date Of Birth</h6>
+      <input class="input-field" type="date" placeholder="Date-of-birth" name="dob" style="width: 50%;margin-left: 5%;" required>
+    </div>
+
+ {% endcomment %}
+
+
+
+{% comment %} <div class="form-row field-address"> {% endcomment %}
+
+    <div lass="input-container">
+        
+                  <i class="fa fa-address-book icon"></i>
+
+            <label class="required" for="id_address" style="padding-top: 2%; margin-bottom:2%; margin-left: 1%; margin-right: 1%;"><h6 >Address</h6></label>
+            
+            <input type="text" name="address"  placeholder="Address"  value={{duser.doctor.address}} class="input-field" maxlength="100" required="" id="id_address">
+            
+        
+        
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+{% comment %} 
+<div class="input-container">
+      <i class="fa fa-address-book icon"></i>
+      <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">     Address   </h6>
+
+      <input class="input-field" type="text" placeholder="Address" name="address" required>
+  </div> {% endcomment %}
+
+
+
+{% comment %} <div class="form-row field-mobile_no"> {% endcomment %}
+
+
+    <div class="input-container">
+              <i class="fa fa-phone icon"></i>
+
+        
+            <label class="required" for="id_mobile_no" style="padding-top: 2%;  margin-top: 2%;margin-right: 1%;"> <h6 >  Mobile  </h6></label>
+            
+                <input type="text" name="mobile_no"  value={{duser.doctor.mobile_no}} class="input-field" maxlength="15" required="" id="id_mobile_no">
+            
+        
+        
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+{% comment %} <div class="input-container">
+      <i class="fa fa-phone icon"></i>
+      <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">    Mobile    </h6>
+
+      <input class="input-field" type="number" placeholder="Mobile" name="mobile" required>
+  </div> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+{% comment %} <div class="form-row field-gender"> {% endcomment %}
+      <div class="input-container">  
+        <i class="fa fa-genderless icon"></i>
+
+        <label class="required" for="id_gender" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>Gender</h6></label>
+
+          {% comment %} <div style="margin-left: 3%; padding-top: 1%;">
+        <input class="radio-btn" type="radio" name="gender" value="male" checked> Male 
+    <input class="radio-btn" type="radio" name="gender" value="female"> Female
+    <input class="radio-btn" type="radio" name="gender" value="other"> Other 
+</div> {% endcomment %}
+      <div style="margin-left: 3%; padding-top: 1%;">
+      {% comment %} <input type="text" name="gender" placeholder="Gender" value={{duser.doctor.gender}} class="radio-btn" maxlength="10" required="" id="id_gender"> {% endcomment %}
+      <input type="radio" class="radio-btn" name="gender"  value=male class="radio-btn" maxlength="10"  id="id_gender" checked>Male
+      <input type="radio" class="radio-btn" name="gender"  value=female class="radio-btn" maxlength="10"  id="id_gender">Female
+      <input type="radio" class="radio-btn" name="gender"  value=other class="radio-btn" maxlength="10"  id="id_gender">Other
+      </div> 
+      </div>
+{% comment %} </div> {% endcomment %}
+
+
+{% comment %} <div class="input-container">
+  
+  <i class="fa fa-genderless icon"></i>
+  <h6 style="padding-top: 1%;margin-left: 1%;">Gender</h6>
+
+  <div style="margin-left: 3%; padding-top: 1%;">
+      <input class="radio-btn" type="radio" name="gender" value="male" checked> Male 
+  <input class="radio-btn" type="radio" name="gender" value="female"> Female
+  <input class="radio-btn" type="radio" name="gender" value="other"> Other 
+</div>
+  </div> {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} <div class="form-row field-registration_no"> {% endcomment %}
+    <div class="input-container">
+    <i class="fa fa-id-card-o icon"></i>
+
+      <label class="required" for="id_registration_no" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>Registration No</h6></label>
+      <input type="text" name="registration_no" placeholder="Registration No" value={{duser.doctor.registration_no}} class="input-field" maxlength="20" required="" id="id_registration_no">    
+    </div>
+{% comment %} </div> {% endcomment %}
+
+
+
+
+  {% comment %} <div class="input-container">
+    <i class="fa fa-id-card-o icon"></i>
+    <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">    Registration No    </h6>
+
+    <input class="input-field" type="text" placeholder="Registration No" name="Registration No" required>
+</div>
+ {% endcomment %}
+
+
+
+
+{% comment %} <div class="form-row field-year_of_registration"> {% endcomment %}
+    <div class="input-container">
+      <i class="fa fa-calendar icon"></i>
+
+    <label class="required" for="id_year_of_registration" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>Year Of Registration</h6></label>
+    <input type="date" name="year_of_registration" value={{duser.doctor.year_of_registration|date:'Y-m-d'}} class="input-field" size="10" required="" id="id_year_of_registration">
+  </div>
+{% comment %} </div> {% endcomment %}
+
+{% comment %} 
+<div class="input-container">
+  <i class="fa fa-calendar icon"></i>
+  <h6 style="padding-top: 2%; margin-left: 1%;">     Year Of Registration      </h6>
+  <input class="input-field" type="date" placeholder="Year of Registration" name="Yor" style="width: 50%;margin-left: 5%;" required>
+</div> {% endcomment %}
+
+
+
+
+
+
+{% comment %} <div class="form-row field-qualification"> {% endcomment %}
+<div class="input-container">
+<i class="fa fa-user-md icon"></i>
+    <label class="required" for="id_qualification" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6> Qualification </h6></label>
+    <input type="text" name="qualification" placeholder="Qualification"  value={{duser.doctor.qualification}} class="input-field" maxlength="20" required="" id="id_qualification">
+             
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+
+{% comment %} 
+<div class="input-container">
+  <i class="fa fa-user-md icon"></i>
+  <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">    Qualification    </h6>
+
+  <input class="input-field" type="text" placeholder="Qualification" name="Qualification" required>
+</div> {% endcomment %}
+
+
+
+
+{% comment %} <div class="form-row field-State_Medical_Council"> {% endcomment %}
+
+
+    <div class="input-container">
+        
+          <i class="fa fa-users icon"></i>
+
+            <label class="required" for="id_State_Medical_Council" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>   State Medical Council   </h6></label>
+            
+            <input type="text" name="State_Medical_Council" placeholder=" State Medical Council" value={{duser.doctor.State_Medical_Council}} class="input-field" maxlength="30" required="" id="id_State_Medical_Council">
+            
+        
+        
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+
+
+
+{% comment %} <div class="input-container">
+  <i class="fa fa-users icon"></i>
+  <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">   State Medical Council   </h6>
+
+  <input class="input-field" type="text" placeholder=" State Medical Council" name=" State Medical Council" required>
+
+  
+</div> {% endcomment %}
+
+{% comment %} <div class="form-row field-specialization"> {% endcomment %}
+
+
+    <div class="input-container">
+        
+         <i class="fa fa-address-book icon"></i>
+        
+            <label class="required" for="id_specialization" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"><h6>   Specialization   </h6> </label>
+            
+              <input type="text" name="specialization" value={{duser.doctor.specialization}} class="input-field" maxlength="30" required="" id="id_specialization">
+            
+        
+        
+    </div>
+
+{% comment %} </div> {% endcomment %}
+
+
+
+{% comment %} <div class="input-container">
+  <i class="fa fa-address-book icon"></i>
+  <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">   Specialization   </h6>
+
+  <input class="input-field" type="text" placeholder="Specialization" name="Specialization" required>
+
+  
+</div> {% endcomment %}
+
+
+
+
+
+{% comment %} <div class="form-row field-rating"> {% endcomment %}
+
+
+        <div class="input-container">
+            
+           <i class="fa fa-phone icon"></i>
+
+               
+                <label class="required" for="id_specialization" style="padding-top: 2%; margin-left: 1%;margin-right: 1%;"> <h6 >   Rating  </h6></label>
+                
+                    <input type="text" name="Rating" placeholder="Rating" value={{duser.doctor.rating}}/5 class="input-field" maxlength="30" required="" id="id_Rating">
+                
+            
+            
+        </div>
+    
+{% comment %} </div> {% endcomment %}
+
+
+
+{% comment %} <div class="input-container">
+  <i class="fa fa-phone icon"></i>
+  <h6 style="padding-top: 2%; margin-left: 1%;margin-right: 1%;">   Rating  </h6>
+
+  <input class="input-field" type="text" placeholder="Rating" name="Rating" required>
+
+  
+</div> {% endcomment %}
+
+
+ <center>
+{% if request.user.doctor %}
+
+            <div class="comtainer mt-3 mb-3 ml-4 mr-4">
+              
+                <div class="btn-group">
+                  <button type="button" class="btn btn-secondary pr-4 pl-4 mr-5 ml-5 " data-toggle="collapse" data-target="#save">Edit</button>
+                  <div id="save" class="collapse ml-5 mr-5">
+                    <button type="button"  id="save" class="btn btn-success pr-4 pl-4 mr-5 ml-5 ">Save</button>
+                    </div>
+                 
+                </div>
+                
+            </div>
+      {% endif %}
+
+ </center>
+
+
+</div>
+  <div class="col-sm-2"></div>
+  </div>
+  </div>
+
+
+</div>
+
+
+</fieldset>
+
+
+
+
+
+<div class="container" style="padding-bottom:5%">
+        
+    <br>   
+<h2>Ratings and Reviews</h2>
+<br>
+        <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Patient name</th>
+                    <th>Ratings</th>
+                    <th>Reviews</th>
+                  </tr>
+                </thead>
+                <tbody>
+                        {% for i in rate %}
+               <tr>
+                    <td>{{i.patient.name}}</td>
+                    <td>{{i.rating}}/5</td>
+                    <td>{{i.review}}</td>
+               </tr>
+                 
+     {% endfor %}
+                </tbody>
+              </table>
+</div>
+
+
+    </div>
+
+ </div>
+    <!-- END Content -->
+
+</div>
+<!-- END Container -->
+
+
+
+
+
+
+
+<script>
+
+    $(document).ready( function(){
+      $('#save').click( function(event){
+  
+      dob = document.getElementById('id_dob').value,
+      yor = document.getElementById('id_year_of_registration').value,
+  
+      $.ajax({
+          url :"{% url 'saveddata' duser.username %}",
+          type : "POST",
+          data : { 
+  
+          'csrfmiddlewaretoken': '{{ csrf_token }}',
+          "name" :document.getElementById('id_name').value,
+          "dob" :dob,
+          "gender" :document.getElementById('id_gender').value,
+          "address" :document.getElementById('id_address').value,
+          "mobile_no" :document.getElementById('id_mobile_no').value,
+          "registration_no" : document.getElementById('id_registration_no').value,
+          "year_of_registration" : yor,
+          "qualification": document.getElementById('id_qualification').value,
+          "State_Medical_Council" : document.getElementById('id_State_Medical_Council').value,
+          "specialization" : document.getElementById('id_specialization').value
+          
+  
+         },
+  
+          success : function(){
+            alert("new data is saved.")
+          }
+  
+      });
+  
+  
+    });
+  });
+  
+  </script>
+
+
+
+  
+<!-- start Footer -->
+
+  <footer id="footer">
+
+    <div class="footer-top footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3 id="foothead">SHDPS</h3>
+            <p>
+              Plot no. 2 & 3, Sec 16 <br>
+              Khanda Gaon, Nr Thana Naka,<br>
+              New Panvel - 410206<br><br>
+              <strong>Phone:</strong> 022-24124188<br>
+              <strong>Email:</strong> contact@shdps.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-5 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about.html">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="contact.html">Contact</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Make Appointment</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Services</a></li>
+            </ul>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+           <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+             <h6 style="color: #fff;">Locate Us</h6>
+		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+        var setting = {"height":200,"width":350,"zoom":17,"queryString":"AIKTC COLLEGE, Sector 16, Khanda Colony, Panvel, Navi Mumbai, Maharashtra, India","place_id":"ChIJefH7Njro5zsRbsXoUVCQsLs","satellite":false,"centerCoord":[19.00016795546809,73.10430254999999],"cid":"0xbbb0905051e8c56e","lang":"en","cityUrl":"/india/navi-mumbai-32471","cityAnchorText":"Map of Navi Mumbai, West Zone, India","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"377192"};
+        var d = document;
+        var s = d.createElement('script');
+        s.src = 'https://1map.com/js/script-for-user.js?embed_id=377192';
+        s.async = true;
+        s.onload = function (e) {
+          window.OneMap.initMap(setting)
+        };
+        var to = d.getElementsByTagName('script')[0];
+        to.parentNode.insertBefore(s, to);
+      })();</script><a href="https://1map.com/map-embed">1 Map</a></div>
+          </div>
+
+          <div class="col-sm-5"></div>
+          <div class="footer-copyright text-center py-3" style="color: #fff;">© 2021 Copyright:
+            <a href="https://www.shdps.com"> www.shdps.com</a>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </footer>
+  <!-- End Footer -->
+
+  
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends "basic.html" %}
+{% load static %}
+
+ 
+    {% block head %}
+   
+{% endblock %}
+
+
+
+
+{% block body %}
+
+
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {border: 3px solid #f1f1f1;}
+        
+        #box{
+           width:30%;
+           height:30%;
+        }
+        .mn{
+           padding-top: 8%;
+           padding-bottom: 2%;
+        }
+        
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+        
+        button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+        
+        button:hover {
+          opacity: 0.8;
+        }
+        
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        
+        img.avatar {
+          width: 40%;
+          border-radius: 50%;
+        }
+        
+        span.psw {
+          float: right;
+          padding-top: 16px;
+        }
+
+        /* .col:nth-of-type(2) {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .col:nth-of-type(2) .row a , .col:nth-of-type(2) button{
+          font-size: 2rem;
+          padding: 1em 0;
+        } */
+        
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+          }
+          .cancelbtn {
+             width: 100%;
+          }
+        }
+
+        </style>
+
+<br>
+<div class="container mt-2 mb-3" style="padding-top:5%;padding-bottom:5%">
+<center><b><h1 style="font-size:50px">Patient Profile</h1></b>
+</center><br>
+
+
+
+
+    <div class="row">
+        <div class="col" >
+
+            <div class="card" style="width:350px">
+                <img class="card-img-top" src="{% static 'homepage/patient.png' %}" alt="Card image" style="width:100%;">
+               
+                <div class="card-body">
+                <b>
+                  <h4 class="card-title">Patient Name : {{puser.patient.name}}</h4>
+                  <p class="card-text">Patient ID - {{puser.patient.user_id}}</p>
+                  <p class="card-text">Patient Email - {{puser.email}}</p>
+                  </b>
+                  <br>
+                   <center>
+                  <a href="{% url 'pviewprofile' puser.username %}" class="btn btn-primary">View Profile</a>
+                                  </center>
+
+                </div>
+              </div>
+
+        </div>
+
+
+        
+            <div class="col" >
+                   <div class="row">
+                
+                   <a id="links" class="btn btn-outline-info btn-block" href="{% url 'checkdisease' %}">Check disease </a><br>
+                   </div>
+                    <br>
+                   <div class="row">
+                    <a id="links" class="btn btn-outline-info btn-block" href="{% url 'pconsultation_history' %}">To Consult with Doctor / View consulation history</a>
+                    </div>
+                    <br><br>
+                   <div class="row">
+                    <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#myModal-feedback">Give Feedback </button>
+                    </div>
+
+              </div>
+                <div class="modal fade" id="myModal-feedback">
+        <div class="modal-dialog modal-xl ">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Feedbacks</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="post_feedback" method="POST">   {% csrf_token %}
+                  <div class="form-group">
+                    <label for="comment">Give feeback:</label>
+                    <textarea class="form-control" rows="5" id="feedback" name="feedback"></textarea>
+                  </div>
+                  
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button id="submit" type="submit" class="btn btn-success" data-dismiss="modal" style="color: white;">Submit</button>
+            </div>
+                </form>
+            
+          </div>
+        </div>
+      </div>
+    
+
+               
+
+        </div>
+    </div>
+
+<script>
+
+
+  $(document).ready(function() {
+
+    $('#submit').click( function(event){
+  
+      $.ajax({
+          url :"{% url 'post_feedback' %}",
+          type : "POST",
+          data : { feedback : $('#feedback').val(),
+          csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+         },
+  
+          success : function(data){
+              alert(data);
+          }
+      });
+  
+  
+  });
+      
+   });
+
+</script>
+
+</div>
+
+     
+
+
+
+
+<!-- start Footer -->
+
+  <footer id="footer">
+
+    <div class="footer-top footer">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3 id="foothead">SHDPS</h3>
+            <p>
+              Plot no. 2 & 3, Sec 16 <br>
+              Khanda Gaon, Nr Thana Naka,<br>
+              New Panvel - 410206<br><br>
+              <strong>Phone:</strong> 022-24124188<br>
+              <strong>Email:</strong> contact@shdps.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-5 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="about.html">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="contact.html">Contact</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Make Appointment</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="index.html">Services</a></li>
+            </ul>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+           <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
+             <h6 style="color: #fff;">Locate Us</h6>
+		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
+        var setting = {"height":200,"width":350,"zoom":17,"queryString":"AIKTC COLLEGE, Sector 16, Khanda Colony, Panvel, Navi Mumbai, Maharashtra, India","place_id":"ChIJefH7Njro5zsRbsXoUVCQsLs","satellite":false,"centerCoord":[19.00016795546809,73.10430254999999],"cid":"0xbbb0905051e8c56e","lang":"en","cityUrl":"/india/navi-mumbai-32471","cityAnchorText":"Map of Navi Mumbai, West Zone, India","id":"map-9cd199b9cc5410cd3b1ad21cab2e54d3","embed_id":"377192"};
+        var d = document;
+        var s = d.createElement('script');
+        s.src = 'https://1map.com/js/script-for-user.js?embed_id=377192';
+        s.async = true;
+        s.onload = function (e) {
+          window.OneMap.initMap(setting)
+        };
+        var to = d.getElementsByTagName('script')[0];
+        to.parentNode.insertBefore(s, to);
+      })();</script><a href="https://1map.com/map-embed">1 Map</a></div>
+          </div>
+
+          <div class="col-sm-5"></div>
+          <div class="footer-copyright text-center py-3" style="color: #fff;">© 2021 Copyright:
+            <a href="https://www.shdps.com"> www.shdps.com</a>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+      </div>
+    </div>
+
+    
+  </footer>
+  <!-- End Footer -->
+</div>
+  
+{% endblock %}
